@@ -1,7 +1,7 @@
 
 # Maintainer: SpamixOfficial <spamixofficial@gmail.com>
 pkgname=hashzam-git
-pkgver=1.0.r4.9259d14
+pkgver=1.0
 pkgrel=1
 pkgdesc="A simple command line tool written in python that calculate and compare hashes!"
 arch=(x86_64)
@@ -20,14 +20,16 @@ pkgver() {
 }
 
 build() {
-
+	sudo echo "sudo enabled"
 	pip install colorama
 }
 
 package() {
 	cd hashzam-git-aur
+	sudo mkdir "/usr/share/licenses/${pkgname}"
+	sudo mkdir "/usr/share/doc/${pkgname}"
 	chmod +x hashzam.py 
-	cp hashzam.py "$/usr/local/bin/hashzam"
-	cp LICENSE "/usr/share/licenses/${pkgname}/LICENSE"
-	cp README.md "/usr/share/doc/${pkgname}/README.md"
+	sudo cp hashzam.py "/usr/local/bin/hashzam"
+	sudo cp LICENSE "/usr/share/licenses/${pkgname}/LICENSE"
+	sudo cp README.md "/usr/share/doc/${pkgname}/README.md"
 }
