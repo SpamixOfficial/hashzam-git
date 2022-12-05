@@ -1,47 +1,33 @@
 
-# Maintainer: SpamixOfficial spamixofficial@gmail.com
+# Maintainer: SpamixOfficial <spamixofficial@gmail.com>
 pkgname=hashzam-git
 pkgver=1.0
 pkgrel=1
 pkgdesc="A simple command line tool written in python that calculate and compare hashes!"
 arch=(x86_64)
-url=""
+url="https://github.com/SpamixOfficial/Hashzam.git"
 license=('GPL-3.0')
-groups=()
 depends=()
-makedepends=(git)
-checkdepends=()
+makedepends=(git python-pip python)
 optdepends=()
-provides=()
-conflicts=()
-replaces=()
-backup=()
-options=()
-install=
-changelog=
-source=("$pkgname-$pkgver.tar.gz"
-        "$pkgname-$pkgver.patch")
-noextract=()
-md5sums=()
-validpgpkeys=()
+provides=(hashzam)
+source=("git+$url")
+md5sums=('SKIP')
 
-prepare() {
-	cd "$pkgname-$pkgver"
-	patch -p1 -i "$srcdir/$pkgname-$pkgver.patch"
+pkgver() {
+	cd "${_pkgname}"
+	printf "1.0.r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 build() {
-	cd "$pkgname-$pkgver"
-	./configure --prefix=/usr
-	make
-}
 
-check() {
-	cd "$pkgname-$pkgver"
-	make -k check
+	pip install colorama
 }
 
 package() {
-	cd "$pkgname-$pkgver"
-	make DESTDIR="$pkgdir/" install
+	cd hashzam-git-aur
+	chmod +x hashzam.py 
+	cp hashzam.py "${pkgdir}/usr/local/bin/hashzam"
+	cp LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+	cp README.md "${pkgdir}/usr/share/doc/${pkgname}/README.md"
 }
