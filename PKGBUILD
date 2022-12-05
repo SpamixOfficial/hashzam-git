@@ -1,11 +1,11 @@
 
 # Maintainer: SpamixOfficial <spamixofficial@gmail.com>
 pkgname=hashzam-git
-pkgver=1.0
+pkgver=1.0.r4.9259d14
 pkgrel=1
 pkgdesc="A simple command line tool written in python that calculate and compare hashes!"
 arch=(x86_64)
-url="https://github.com/SpamixOfficial/Hashzam.git"
+url="https://github.com/SpamixOfficial/hashzam-git-aur.git"
 license=('GPL-3.0')
 depends=()
 makedepends=(git python-pip python)
@@ -27,7 +27,7 @@ build() {
 package() {
 	cd hashzam-git-aur
 	chmod +x hashzam.py 
-	cp hashzam.py "${pkgdir}/usr/local/bin/hashzam"
-	cp LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
-	cp README.md "${pkgdir}/usr/share/doc/${pkgname}/README.md"
+	cp hashzam.py "$/usr/local/bin/hashzam"
+	cp LICENSE "/usr/share/licenses/${pkgname}/LICENSE"
+	cp README.md "/usr/share/doc/${pkgname}/README.md"
 }
